@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada Sesuatu Buat Kamu... ❤️</title>
+    <!-- Menggunakan Tailwind CSS untuk styling yang bagus dan modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animasi kustom untuk efek romantis */
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            animation: float 4s linear infinite;
+            pointer-events: none;
+        }
+        .bg-gradient-custom {
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 50%, #ffb3c6 100%);
+        }
+    </style>
+</head>
+<body class="bg-gradient-custom min-h-screen flex flex-col items-center justify-center overflow-hidden font-sans relative px-4">
+
+    <!-- Efek Hati Berguguran (Akan digenerate oleh JavaScript) -->
+    <div id="heart-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- KONTEN UTAMA -->
+    <div class="z-10 bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-2xl max-w-md w-full text-center border border-white/50 transform transition-all duration-500 hover:scale-105">
+        
+        <!-- HALAMAN 1: TOMBOL PEMBUKA -->
+        <div id="step-1" class="space-y-6">
+            <div class="text-6xl animate-bounce">🎁</div>
+            <h1 class="text-2xl font-bold text-gray-800">Hai Sayang...</h1>
+            <p class="text-gray-600">Aku punya sesuatu yang spesial buat kamu hari ini. Coba klik tombol di bawah!</p>
+            <button onclick="nextStep()" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:from-pink-600 hover:to-rose-600 transition-all duration-300 transform active:scale-95">
+                Buka Kejutannya ✨
+            </button>
+        </div>
+
+        <!-- HALAMAN 2: PESAN KEJUTAN (Sembunyi dulu) -->
+        <div id="step-2" class="hidden space-y-6 animate-fade-in">
+            <!-- Kamu bisa ganti URL gambar ini dengan foto kalian berdua -->
+            <div class="relative w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-pink-400 shadow-inner">
+                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Romantis" class="w-full h-full object-cover">
+            </div>
+            
+            <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-rose-600">
+                I Love You! ❤️
+            </h2>
+            
+            <!-- Silakan edit kata-kata manis di bawah ini sesuai keinginanmu -->
+            <p class="text-gray-700 leading-relaxed text-sm md:text-base">
+                "Makasih ya udah selalu ada, udah jadi orang yang paling sabar, dan selalu bikin hari-hariku jadi lebih berwarna. Aku bersyukur banget bisa punya kamu. Tetap sama aku terus ya? 🥰"
+            </p>
+
+            <div class="pt-4 border-t border-gray-200/50 flex justify-center space-x-2 text-xs text-pink-600 font-medium animate-pulse">
+                <span>Carefully crafted just for you 💖</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Fungsi untuk berpindah halaman saat tombol diklik
+        function nextStep() {
+            document.getElementById('step-1').classList.add('hidden');
+            const step2 = document.getElementById('step-2');
+            step2.classList.remove('hidden');
+            
+            // Memicu efek hujan hati yang lebih intens saat kejutan terbuka
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 150);
+            }
+        }
+
+        // Fungsi untuk membuat efek animasi hati mandiri
+        function createHeart() {
+            const container = document.getElementById('heart-container');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            
+            // Karakter hati acak
+            const heartTypes = ['❤️', '💖', '💝', '💕', '🌸'];
+            heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            
+            // Posisi dan ukuran acak
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's'; // antara 3-5 detik
+            
+            container.appendChild(heart);
+            
+            // Hapus elemen setelah animasi selesai agar web tidak berat
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Jalankan efek hati pelan-pelan sejak awal web dibuka
+        setInterval(createHeart, 800);
+    </script>
+</body>
+</html>
